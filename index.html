@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html ng-app="myApp">
   <head>
@@ -14,8 +15,8 @@
       <header>Firebase Chat Demo</header>
 
       <div class='example-chat-toolbar'>
-        <label for='nameInput'>Username:</label>
-        <input ng-model='name' type='text' id='nameInput' placeholder='enter a username...'>
+        <label for='nameInput'>Details:</label>
+        <input ng-model='name' type='text' id='nameInput' placeholder='enter your name..'>
       </div>
 
       <ul id='example-messages' class='example-chat-messages'>
@@ -26,35 +27,29 @@
       </ul>
 
       <footer>
-        <input ng-model='msg' ng-keydown="addMessage($event)" type='text' id='messageInput'  placeholder='Type a message...'>
+        <input ng-model='msg' ng-keydown="addMessage($event)" type='text' id='messageInput'  placeholder='What is your favourite sport?'>
       </footer>
     </div>
 
     <script>
       var myApp = angular.module("myApp", ["firebase"]);
-
       myApp.controller('MyController', ['$scope', '$firebase',
         function($scope, $firebase) {
           //CREATE A FIREBASE REFERENCE
-          var ref = new Firebase("https://ss1jz31rg0y.firebaseio-demo.com/");
-
+          var ref = new Firebase("https://shaunteh.firebaseio.com/");
           // GET MESSAGES AS AN ARRAY
           $scope.messages = $firebase(ref).$asArray();
-
           //ADD MESSAGE METHOD
           $scope.addMessage = function(e) {
-
             //LISTEN FOR RETURN KEY
             if (e.keyCode === 13 && $scope.msg) {
               //ALLOW CUSTOM OR ANONYMOUS USER NAMES
               var name = $scope.name || 'anonymous';
-
               //ADD TO FIREBASE
               $scope.messages.$add({
                 from: name,
                 body: $scope.msg
               });
-
               //RESET MESSAGE
               $scope.msg = "";
             }
@@ -62,6 +57,6 @@
         }
       ]);
     </script>
-    <p>Check out this next cool site <a href='#'>here!</a></p>
+    <center><p>Check out this next cool site <a href='http://shabbies.github.io/is429/crossmarketing.html'>here!</a></p></center>
   </body>
 </html>
